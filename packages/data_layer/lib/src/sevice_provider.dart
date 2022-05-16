@@ -11,6 +11,6 @@ class ServiceProvider {
   static final instance = ServiceProvider();
 
   void initialize() {
-    _getIt.registerLazySingleton<HealthService>(() => DummyService());
+    _getIt.registerLazySingleton<UserService>(() => DummyUserService());
   }
 }
