@@ -51,6 +51,7 @@ class MyHomePage extends StatelessWidget {
         builder: (context, snapshot) {
           if (snapshot.hasData) {
             final state = snapshot.data;
+
             return state!.map<Widget>(
                 loading: (_) => Scaffold(
                       appBar: AppBar(
@@ -70,8 +71,10 @@ class MyHomePage extends StatelessWidget {
                       ),
                       floatingActionButton: FloatingActionButton(
                         onPressed: () => context.read<MainBloc>().add(
-                            MainBlocEvent.setUser(
-                                userId: state.userData.id + 1)),
+                              MainBlocEvent.setUser(
+                                userId: state.userData.id + 1,
+                              ),
+                            ),
                         tooltip: 'Increment',
                         child: const Icon(Icons.add),
                       ),
