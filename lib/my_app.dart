@@ -23,15 +23,16 @@ class _MyAppState extends State<MyApp> {
   @override
   Widget build(BuildContext context) {
     return Provider<MainBloc>(
-        create: (_) => _mainBloc,
-        lazy: false,
-        child: MaterialApp(
-          title: 'Flutter Demo',
-          theme: ThemeData(
-            primarySwatch: Colors.blue,
-          ),
-          home: const MyHomePage(),
-        ));
+      create: (_) => _mainBloc,
+      lazy: false,
+      child: MaterialApp(
+        title: 'Flutter Demo',
+        theme: ThemeData(
+          primarySwatch: Colors.blue,
+        ),
+        home: const MyHomePage(),
+      ),
+    );
   }
 
   @override
@@ -47,41 +48,45 @@ class MyHomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return StreamBuilder<MainBlocState>(
-        stream: context.read<MainBloc>().state,
-        builder: (context, snapshot) {
-          if (snapshot.hasData) {
-            final state = snapshot.data;
+      stream: context.read<MainBloc>().state,
+      builder: (context, snapshot) {
+        if (snapshot.hasData) {
+          final state = snapshot.data;
 
-            return state!.map<Widget>(
-                loading: (_) => Scaffold(
-                      appBar: AppBar(
-                        title: const Text('Demo'),
+          return state!.map<Widget>(
+            loading: (_) => Scaffold(
+              appBar: AppBar(
+                title: const Text('Demo'),
+              ),
+              body: const Center(
+                child: Text('Initializing'),
+              ),
+            ),
+            loaded: (state) => Scaffold(
+              appBar: AppBar(
+                title: const Text('Flutter Demo Home Page'),
+              ),
+              body: Center(
+                child: Text(
+                  state.userData.name,
+                  style: Theme.of(context).textTheme.headline4,
+                ),
+              ),
+              floatingActionButton: FloatingActionButton(
+                onPressed: () => context.read<MainBloc>().add(
+                      MainBlocEvent.setUser(
+                        userId: state.userData.id + 1,
                       ),
-                      body: const Center(child: Text('Initializing')),
                     ),
-                loaded: (state) => Scaffold(
-                      appBar: AppBar(
-                        title: const Text('Flutter Demo Home Page'),
-                      ),
-                      body: Center(
-                        child: Text(
-                          state.userData.name,
-                          style: Theme.of(context).textTheme.headline4,
-                        ),
-                      ),
-                      floatingActionButton: FloatingActionButton(
-                        onPressed: () => context.read<MainBloc>().add(
-                              MainBlocEvent.setUser(
-                                userId: state.userData.id + 1,
-                              ),
-                            ),
-                        tooltip: 'Increment',
-                        child: const Icon(Icons.add),
-                      ),
-                    ));
-          } else {
-            return const CircularProgressIndicator();
-          }
-        });
+                tooltip: 'Increment',
+                child: const Icon(Icons.add),
+              ),
+            ),
+          );
+        } else {
+          return const CircularProgressIndicator();
+        }
+      },
+    );
   }
 }

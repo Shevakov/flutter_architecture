@@ -13,11 +13,14 @@ dependencies:
   get_it: ^7.2.0
   domain_module:
     path: ../domain_module
+  pedantic: ^1.11.1
 
 dev_dependencies:
   flutter_test:
     sdk: flutter
   flutter_lints: ^1.0.0
+  module_analyze:
+    path: ../module_analyze
 
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec

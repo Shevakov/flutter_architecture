@@ -33,6 +33,7 @@ dependencies:
     path: packages/business_layer
   provider: ^6.0.2
   get_it: ^7.2.0
+  pedantic: ^1.11.1
 
   # The following adds the Cupertino Icons font to your application.
   # Use with the CupertinoIcons class for iOS style icons.
@@ -42,6 +43,8 @@ dev_dependencies:
   flutter_test:
     sdk: flutter
   dart_code_metrics: ^4.15.2
+  module_analyze:
+    path: packages/module_analyze
 
   # The "flutter_lints" package below contains a set of recommended lints to
   # encourage good coding practices. The lint set provided by the package is

@@ -1,4 +1,4 @@
-name: domain_module
+name: module_analyze
 description: A new Flutter project.
 version: 0.0.1
 
@@ -9,16 +9,12 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
-  freezed: ^2.0.3+1
   pedantic: ^1.11.1
 
 dev_dependencies:
   flutter_test:
     sdk: flutter
   flutter_lints: ^1.0.0
-  build_runner: ^2.1.10
-  module_analyze:
-    path: ../module_analyze
 
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec
